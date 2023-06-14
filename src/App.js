@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import './App.css';
+import ToDoItem from "./components/ToDoItem";
+import TodoList from "./components/ToDoList";
 
 function App() {
   const [inputText, setInputText] = useState("");
@@ -26,25 +28,13 @@ function App() {
         <h1>To-Do List</h1>
       </div>
 
-      <div className="form">
-        <input onChange={handleChange} type="text" value={inputText} />
-        <button onClick={handleClick}>
-          <span>Add</span>
-        </button>
-      </div>
+      <ToDoItem
+        inputText={inputText}
+        handleChange={handleChange}
+        handleClick={handleClick}
+      />
 
-      <div>
-        <ul>
-          {items.map((item, index) => (
-            <li key={index}>
-              {item}{" "}
-              <button onClick={() => handleDelete(index)}>
-                <span>&#x2713;</span>
-              </button>
-            </li>
-          ))}
-        </ul>
-      </div>
+      <TodoList items={items} handleDelete={handleDelete} />
     </div>
   );
 }
